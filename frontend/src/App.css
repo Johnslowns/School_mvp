@@ -121,7 +121,7 @@
 
 .dashboard-main {
   flex: 1;
-  margin-left: 200px; /* Equal to sidebar width */
+   
   padding: 20px;
   height: 100vh;
   overflow-y: auto;
@@ -138,11 +138,9 @@
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  position: fixed;
+  
 
-  overflow-y: auto; /* Optional: scroll sidebar if its content exceeds viewport */
-  top: 0;
-  left: 0;
+ 
 }
 
 .sidebar-logo {
@@ -768,4 +766,98 @@
 .status-tag.inactive {
   background-color: #FF6347;
   color: white;
+}
+
+
+
+/* SchoolManagement.css - Scoped with sm- prefix */
+
+/* SchoolManagement.css */
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
+
+h2 {
+  margin-top: 2rem;
+  color: #2c3e50;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+input[type="text"] {
+  padding: 0.5rem;
+  margin: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  background-color: #2980b9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 0.5rem;
+}
+
+button:hover {
+  background-color: #1f6391;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+li {
+  background: #fff;
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.3s ease;
+  position: relative;
+}
+
+li:hover {
+  background-color: #f0f8ff;
+}
+
+li .delete-icon {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+li:hover .delete-icon {
+  visibility: visible;
+  opacity: 1;
+}
+
+.checkbox-list {
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+}
+
+.checkbox-list li {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.checkbox-list input[type="checkbox"] {
+  margin-right: 0.5rem;
 }

@@ -90,10 +90,121 @@ const deleteClassLevel = async (req, res) => {
   }
 };
 
+const getAllSubjects = async (req, res) => {
+  try {
+    const subjects = await schoolSetupModel.getAllSubjects();
+    res.json(subjects);
+  } catch (err) {
+    console.error("Error fetching subjects:", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const createSubject = async (req, res) => {
+  const { name, code } = req.body;
+  try {
+    await schoolSetupModel.insertSubject(name, code);
+    res.status(201).json({ message: "Subject created" });
+  } catch (err) {
+    console.error("Error creating subject:", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const deleteSubject = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await schoolSetupModel.deleteSubject(id);
+    res.json({ message: "Subject deleted" });
+  } catch (err) {
+    console.error("Error deleting subject:", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const updateSubjectDepartment = async (req, res) => {
+  const { id } = req.params;
+  const { department_id } = req.body;
+  try {
+    await schoolSetupModel.updateSubjectDepartment(id, department_id);
+    res.json({ message: "Subject department updated" });
+  } catch (err) {
+    console.error("Error updating subject:", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+// === DEPARTMENTS ===
+const getAllDepartments = async (req, res) => {
+  try {
+    const departments = await schoolSetupModel.getAllDepartments();
+    res.json(departments);
+  } catch (err) {
+    console.error("Error fetching departments:", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const createDepartment = async (req, res) => {
+  const { name } = req.body;
+  try {
+    const id = await schoolSetupModel.insertDepartment(name);
+    res.status(201).json({ message: "Department created", id });
+  } catch (err) {
+    console.error("Error creating department:", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+// === DORMITORIES ===
+const getAllDormitories = async (req, res) => {
+  try {
+    const dorms = await schoolSetupModel.getAllDormitories();
+    res.json(dorms);
+  } catch (err) {
+    console.error("Error fetching dormitories:", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const createDormitory = async (req, res) => {
+  const { name } = req.body;
+  try {
+    await schoolSetupModel.insertDormitory(name);
+    res.status(201).json({ message: "Dormitory created" });
+  } catch (err) {
+    console.error("Error creating dormitory:", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+const deleteDormitory = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await schoolSetupModel.deleteDormitory(id);
+    res.json({ message: "Dormitory deleted" });
+  } catch (err) {
+    console.error("Error deleting dormitory:", err);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
 module.exports = {
   getAllClassLevels,
   deleteClassLevel,
   getStreamsForClassLevel,
   updateClassLevelWithStreams,
-  createClassLevelWithStreams
+  createClassLevelWithStreams,
+  getAllSubjects,
+  createSubject,
+  deleteSubject,
+  updateSubjectDepartment,
+
+  getAllDepartments,
+  createDepartment,
+
+  getAllDormitories,
+  createDormitory,
+  deleteDormitory
 };

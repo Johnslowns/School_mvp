@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import api from "../../../api/axios";
+import SchoolManagement from "./addStructures";
 
 
 const ManageClassLevels = () => {
@@ -73,67 +74,72 @@ const ManageClassLevels = () => {
   };
 
   return (
-    <div className="manage-container">
-      <h2 className="title">Manage Class Levels & Streams</h2>
+    <div>
+      <div className="manage-container">
+        <h2 className="title">Manage Class Levels & Streams</h2>
 
-      <div className="field-group">
-        <label>Select Existing Class Level:</label>
-        <select onChange={handleLevelSelect} className="input-select">
-          <option value="">-- Select --</option>
-          {classLevels.map((lvl) => (
-            <option key={lvl.id} value={lvl.id}>
-              {lvl.name}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <form onSubmit={handleSubmit} className="form">
         <div className="field-group">
-          <label>Class Level Name:</label>
-          <input
-            type="text"
-            value={levelName}
-            onChange={handleLevelNameChange}
-            className="input-text"
-            placeholder="e.g., Form 2"
-            required
-          />
+          <label>Select Existing Class Level:</label>
+          <select onChange={handleLevelSelect} className="input-select">
+            <option value="">-- Select --</option>
+            {classLevels.map((lvl) => (
+              <option key={lvl.id} value={lvl.id}>
+                {lvl.name}
+              </option>
+            ))}
+          </select>
         </div>
 
-        <div className="field-group">
-          <label>Streams:</label>
-          {streams.map((stream, index) => (
-            <div key={index} className="stream-row">
-              <input
-                type="text"
-                value={stream.name}
-                onChange={(e) => handleStreamChange(index, e.target.value)}
-                placeholder="e.g., Joy"
-                className="input-text flex-grow"
-                required
-              />
-              {streams.length > 1 && (
-                <button
-                  type="button"
-                  onClick={() => removeStreamField(index)}
-                  className="btn remove-btn"
-                >
-                  X
-                </button>
-              )}
-            </div>
-          ))}
-          <button type="button" onClick={addStreamField} className="btn add-btn">
-            + Add Stream
+        <form onSubmit={handleSubmit} className="form">
+          <div className="field-group">
+            <label>Class Level Name:</label>
+            <input
+              type="text"
+              value={levelName}
+              onChange={handleLevelNameChange}
+              className="input-text"
+              placeholder="e.g., Form 2"
+              required
+            />
+          </div>
+
+          <div className="field-group">
+            <label>Streams:</label>
+            {streams.map((stream, index) => (
+              <div key={index} className="stream-row">
+                <input
+                  type="text"
+                  value={stream.name}
+                  onChange={(e) => handleStreamChange(index, e.target.value)}
+                  placeholder="e.g., Joy"
+                  className="input-text flex-grow"
+                  required
+                />
+                {streams.length > 1 && (
+                  <button
+                    type="button"
+                    onClick={() => removeStreamField(index)}
+                    className="btn remove-btn"
+                  >
+                    X
+                  </button>
+                )}
+              </div>
+            ))}
+            <button type="button" onClick={addStreamField} className="btn add-btn">
+              + Add Stream
+            </button>
+          </div>
+
+          <button type="submit" className="btn submit-btn">
+            Save
           </button>
-        </div>
+        </form>
+      </div>
+      <SchoolManagement/>
 
-        <button type="submit" className="btn submit-btn">
-          Save
-        </button>
-      </form>
     </div>
+    
   );
 };
 
